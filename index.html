@@ -71,8 +71,11 @@
     const SUPABASE_ANON_KEY = 'sb_publishable_y4LZyy2ez2483QKHS-4EnA_bNuQTp5O';
 
     // 初始化 Supabase 客户端
-    const supabase = supabaseJs.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
+    // 修改为（添加 fetchOptions）
+    const supabase = supabaseJs.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      fetchOptions: {
+        credentials: 'omit' // 关键：绕过跨域的凭证验证
+      }
     // 注册表单处理
     const registerForm = document.getElementById('registerForm');
     const registerAlert = document.getElementById('registerAlert');
