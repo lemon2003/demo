@@ -72,14 +72,14 @@
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5kdGJnbXd3YXBhcG52dmdnZnVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAyMDQ4MTMsImV4cCI6MjA4NTc4MDgxM30.u6yqUQW4xF3cEo72kII1Y36dfm1RZxenOemsDrV2p34';
 
     // 修正：初始化 Supabase（仅关闭凭证，不修改 headers）
-    const supabase = supabaseJs.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-      global: {
-        fetch: (url, options = {}) => {
-          options.credentials = 'omit'; // 仅这一行，确保跨域兼容
-          return fetch(url, options);
-        }
-      }
-    });
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+  global: {
+    fetch: (url, options = {}) => {
+      options.credentials = 'omit';
+      return fetch(url, options);
+    }
+  }
+});
 
     // 注册逻辑（无修改）
     document.getElementById('registerForm').addEventListener('submit', async (e) => {
